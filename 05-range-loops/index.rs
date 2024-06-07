@@ -5,8 +5,8 @@ fn main() {
   let _z = 10; // By default z is i32
   println!("Success!");
 
-  // Declare a variable 'v' of type u16 (unsigned 16-bit integer)
-  // Assign the value 38, initially of type u8 (unsigned 8-bit integer)
+  // Declare a variable 'u' of type u16 (unsigned 16-bit integer)
+  // Assign the value 99, initially of type u8 (unsigned 8-bit integer)
   // Converted to u16 using type casting
   let u: u16 = 99_u8 as u16;
   println!("u is {}", u);
