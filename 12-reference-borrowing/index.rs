@@ -38,6 +38,14 @@ fn main() {
     s2.push_str(" Country!");
     println!("{}", s2);
 
+    let mut s: String = String::from("Hello, ");
+    let r1: &mut String = &mut s;
+    r1.push_str("World");
+    let r2: &mut String = &mut s;
+    r2.push_str("!");
+    // println!("{}, {}", r1, r2); // cannot borrow `s` as mutable more than once at a time
+    println!("{}", r2);
+
     println!("Success!");
 }
 
