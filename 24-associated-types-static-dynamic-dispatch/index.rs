@@ -58,6 +58,34 @@ impl Foo for String {
     }
 }
 
+trait MyTraitOne {
+    fn f(&self) -> Self;
+}
+impl MyTraitOne for u32 {
+    fn f(&self) -> Self {
+        42
+    }
+}
+impl MyTraitOne for String {
+    fn f(&self) -> Self {
+        self.clone()
+    }
+}
+
+trait MyTraitTwo {
+    fn f(&self) -> Box<dyn MyTraitTwo>;
+}
+impl MyTraitTwo for u32 {
+    fn f(&self) -> Box<dyn MyTraitTwo> {
+        Box::new(42)
+    }
+}
+impl MyTraitTwo for String {
+    fn f(&self) -> Box<dyn MyTraitTwo> {
+        Box::new(self.clone())
+    }
+}
+
 fn main() {
     let duck: Duck = Duck;
     duck.fly();
@@ -80,6 +108,12 @@ fn main() {
     let y: String = String::from("Hello");
     static_dispatch(x);
     dynamic_dispatch(&y); // &String (reference to string)
+
+    my_function_one(13_u32);
+    my_function_one(String::from("abc"));
+
+    my_function_two(Box::new(13_u32));
+    my_function_two(Box::new(String::from("abc")));
 
     println!("Success!")
 }
@@ -106,4 +140,12 @@ fn static_dispatch<T: Foo>(a: T) {
 
 fn dynamic_dispatch(a: &dyn Foo) {
     a.method();
+}
+
+fn my_function_one<T: MyTraitOne>(x: T) -> T {
+    x.f()
+}
+
+fn my_function_two(x: Box<dyn MyTraitTwo>) -> Box<dyn MyTraitTwo> {
+    x.f()
 }
