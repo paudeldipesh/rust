@@ -8,7 +8,7 @@ type U64 = u64;
 
 type Res<T> = Result<T, ParseIntError>;
 
-fn main() {
+fn main() -> Result<(), ParseIntError> {
     // Result, unwrap, ? operator (almost exactly equivalent to unwrap) and type alias
     let result: Result<f32, &str> = divide(10.0, 2.0);
     match result {
@@ -48,7 +48,13 @@ fn main() {
     let five: Res<i32> = subtraction_two("7", "2");
     print(five); // OK(5)
 
-    println!("Success!")
+    let num_str: &str = "10";
+    let num: i32 = num_str.parse::<i32>()?;
+    println!("{}", num);
+
+    println!("Success!");
+
+    Ok(())
 }
 
 fn divide(x: f32, y: f32) -> Result<f32, &'static str> {
