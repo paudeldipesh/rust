@@ -1,0 +1,12 @@
+cargo new hello-package --bin (binary crate)
+cargo new hello-package1 --lib (library crate)
+
+Q: What's the difference between hello-package and hello-package1?
+A: hello-package is a binary crate, while hello-package1 is a library crate.
+
+Running main1: cargo run --bin main1
+hello_package
+├── src
+│   └── bin
+│       ├── main1.rs
+│       ├── main2.rs
