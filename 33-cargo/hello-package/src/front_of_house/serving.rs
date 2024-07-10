@@ -1,5 +1,5 @@
-pub fn take_order() {
-    println!("Taking order");
+pub fn take_order() -> String {
+    String::from("Taking order")
 }
 
 pub fn serve_order() {
